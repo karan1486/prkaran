@@ -1,0 +1,12 @@
+com\avaya\controller\CrmController.class
+com\avaya\service\AdapterService.class
+com\avaya\util\AvayaDataMocker.class
+com\avaya\controller\WebAppConfig.class
+com\avaya\controller\SwaggerConfig.class
+com\avaya\model\Agent.class
+com\avaya\service\AdapterServiceImpl.class
+com\avaya\model\ModelApiResponse.class
+com\avaya\model\Adapter.class
+com\avaya\model\AgentHandleLoginState.class
+com\avaya\model\AgentLogoutReason.class
+com\avaya\controller\Employee.class
