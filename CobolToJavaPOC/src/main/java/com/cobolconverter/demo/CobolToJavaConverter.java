@@ -47,7 +47,7 @@ public class CobolToJavaConverter {
 	
 	private static String outputRPVFPO0Z="E:\\RPVFPO0Z.txt";
 
-	public static void main(String[] args) throws IOException {
+	public static void convertCobolToJava() throws IOException {
 		
 
 		
