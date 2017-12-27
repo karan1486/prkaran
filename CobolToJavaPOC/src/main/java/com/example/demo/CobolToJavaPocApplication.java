@@ -16,6 +16,7 @@ public class CobolToJavaPocApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CobolToJavaPocApplication.class, args);
+		System.out.println("Inside Main class");
 		
 	}
 }

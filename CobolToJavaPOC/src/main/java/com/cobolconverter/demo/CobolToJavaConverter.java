@@ -47,7 +47,7 @@ public class CobolToJavaConverter {
 	
 	private static String outputRPVFPO0Z="E:\\RPVFPO0Z.txt";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 
 		
@@ -70,6 +70,7 @@ public class CobolToJavaConverter {
 			br = new BufferedReader(fr);
 			String sCurrentLine;
 			while ((sCurrentLine = br.readLine()) != null) {
+
 				arrRPVI3Key.add(convertRPVI3Key(sCurrentLine));
 				arrRPVI3053.add(convertRPVI3053(sCurrentLine));
 			}
@@ -82,8 +83,8 @@ public class CobolToJavaConverter {
 		} finally {
 
 			
-//				bw.close();
-//				bwvzppTot.close();
+			bw.close();
+				bwvzppTot.close();
 
 			
 		}
