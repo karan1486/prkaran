@@ -1,5 +1,6 @@
 package com.cobolconverter.demo;
 
+import java.math.BigDecimal;
 
 public class RPVI8001 {
 	
@@ -11,10 +12,10 @@ public class RPVI8001 {
 	public Integer VZPP_TIME_RECEIVED;          
 	public Integer VZPP_DATE_SENT;    
 	public Integer VZPP_TIME_SENT;    
-	public Short VZPP_PAYMENT_AMOUNT;
-	public Short VZPP_PAYMENT_ITEMS; 
-	public Short VZPP_RETURN_AMOUNT; 
-	public Short VZPP_RETURN_ITEMS;  
+	public BigDecimal VZPP_PAYMENT_AMOUNT;
+	public Integer VZPP_PAYMENT_ITEMS; 
+	public BigDecimal VZPP_RETURN_AMOUNT; 
+	public Integer VZPP_RETURN_ITEMS;  
 	public Short VZPP_PAYMENT_AMOUNT_UI;
 	public Short VZPP_PAYMENT_ITEMS_UI; 
 	public Short VZPP_RETURN_AMOUNT_UI; 
@@ -63,28 +64,28 @@ public class RPVI8001 {
 	public void setVZPP_TIME_SENT(Integer vZPP_TIME_SENT) {
 		VZPP_TIME_SENT = vZPP_TIME_SENT;
 	}
-	public Short getVZPP_PAYMENT_AMOUNT() {
+	public BigDecimal getVZPP_PAYMENT_AMOUNT() {
 		return VZPP_PAYMENT_AMOUNT;
 	}
-	public void setVZPP_PAYMENT_AMOUNT(Short vZPP_PAYMENT_AMOUNT) {
+	public void setVZPP_PAYMENT_AMOUNT(BigDecimal vZPP_PAYMENT_AMOUNT) {
 		VZPP_PAYMENT_AMOUNT = vZPP_PAYMENT_AMOUNT;
 	}
-	public Short getVZPP_PAYMENT_ITEMS() {
+	public Integer getVZPP_PAYMENT_ITEMS() {
 		return VZPP_PAYMENT_ITEMS;
 	}
-	public void setVZPP_PAYMENT_ITEMS(Short vZPP_PAYMENT_ITEMS) {
+	public void setVZPP_PAYMENT_ITEMS(Integer vZPP_PAYMENT_ITEMS) {
 		VZPP_PAYMENT_ITEMS = vZPP_PAYMENT_ITEMS;
 	}
-	public Short getVZPP_RETURN_AMOUNT() {
+	public BigDecimal getVZPP_RETURN_AMOUNT() {
 		return VZPP_RETURN_AMOUNT;
 	}
-	public void setVZPP_RETURN_AMOUNT(Short vZPP_RETURN_AMOUNT) {
+	public void setVZPP_RETURN_AMOUNT(BigDecimal vZPP_RETURN_AMOUNT) {
 		VZPP_RETURN_AMOUNT = vZPP_RETURN_AMOUNT;
 	}
-	public Short getVZPP_RETURN_ITEMS() {
+	public Integer getVZPP_RETURN_ITEMS() {
 		return VZPP_RETURN_ITEMS;
 	}
-	public void setVZPP_RETURN_ITEMS(Short vZPP_RETURN_ITEMS) {
+	public void setVZPP_RETURN_ITEMS(Integer vZPP_RETURN_ITEMS) {
 		VZPP_RETURN_ITEMS = vZPP_RETURN_ITEMS;
 	}
 	public Short getVZPP_PAYMENT_AMOUNT_UI() {

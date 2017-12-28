@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -16,42 +17,37 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CobolToJavaConverter {
-	
-	
 
-	static int WS_TOTAL_CNT = 0;
-	static int WS_VZPP_ORB_PMT_ITEMS = 0;
+	int WS_TOTAL_CNT = 0;
+	int WS_VZPP_ORB_PMT_ITEMS = 0;
 
-	static float WS_VZPP_ORB_PMT_AMT = 0;
-	static float WS_TOTAL_AMT = 0;
-	static int WS_VZPP_ORB_RTN_ITEMS = 0;
-	static float WS_VZPP_ORB_RTN_AMT = 0;
-	final static DecimalFormat decimalFormat = new DecimalFormat("000000");
+	float WS_VZPP_ORB_PMT_AMT = 0;
+	float WS_TOTAL_AMT = 0;
+	int WS_VZPP_ORB_RTN_ITEMS = 0;
+	float WS_VZPP_ORB_RTN_AMT = 0;
+	final DecimalFormat decimalFormat = new DecimalFormat("000000");
 
-	static String DATE_FORMAT = "yyyyMMdd";
-	static SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-	static Calendar c1 = Calendar.getInstance(); // today
-	static Date date = new Date();
-	static DateFormat format = new SimpleDateFormat("HHmm");
+	String DATE_FORMAT = "yyyyMMdd";
+	SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+	Calendar c1 = Calendar.getInstance(); // today
+	Date date = new Date();
+	DateFormat format = new SimpleDateFormat("HHmm");
 
-	private static String inputFile="E:\\NTF4RPV_RPVF3053_G0325.txt";
-	
-	private static String outputRPVFPO0A="E:\\RPVFPO0A.txt";
-	
-	private static String outputRPVFPO0Z="E:\\RPVFPO0Z.txt";
+	private String inputFile = "E:\\NTF4RPV_RPVF3053_G0325.txt";
 
-	public static void convertCobolToJava() throws IOException {
-		
+	public void convertCobolToJava() throws IOException {
+		InputStream propInput = null;
+		File file = new File("./src/main/resources/application.properties");
+		propInput = new FileInputStream(file);
+		Properties prop = new Properties();
 
-		
-		InputStream input = null;
+		prop.load(propInput);
+		System.out.println(prop.getProperty("RPVFPO0A.path"));
+
 		BufferedReader br = null;
 		FileReader fr = null;
 		BufferedWriter bw = null;
@@ -60,13 +56,13 @@ public class CobolToJavaConverter {
 		FileWriter fwbwvzppTot = null;
 
 		try {
-			fw = new FileWriter(outputRPVFPO0A);
+			fw = new FileWriter(prop.getProperty("RPVFPO0A.path"));
 			bw = new BufferedWriter(fw);
-			fwbwvzppTot = new FileWriter(outputRPVFPO0Z);
+			fwbwvzppTot = new FileWriter(prop.getProperty("RPVFPO0Z.path"));
 			bwvzppTot = new BufferedWriter(fwbwvzppTot);
 			ArrayList<RPVI3053> arrRPVI3053 = new ArrayList<RPVI3053>();
 			ArrayList<RPVIPKEY> arrRPVI3Key = new ArrayList<RPVIPKEY>();
-			fr = new FileReader(inputFile);
+			fr = new FileReader(prop.getProperty("inputFile.path"));
 			br = new BufferedReader(fr);
 			String sCurrentLine;
 			while ((sCurrentLine = br.readLine()) != null) {
@@ -82,11 +78,9 @@ public class CobolToJavaConverter {
 
 		} finally {
 
-			
 			bw.close();
-				bwvzppTot.close();
+			bwvzppTot.close();
 
-			
 		}
 	}
 
@@ -100,8 +94,8 @@ public class CobolToJavaConverter {
 	 * @param bwvzppTot
 	 * @throws IOException
 	 */
-	private static void processOutput(ArrayList<RPVIPKEY> arrRPVI3Key, ArrayList<RPVI3053> arrRPVI3053,
-			BufferedWriter bw, BufferedWriter bwvzppTot) throws IOException {
+	private void processOutput(ArrayList<RPVIPKEY> arrRPVI3Key, ArrayList<RPVI3053> arrRPVI3053, BufferedWriter bw,
+			BufferedWriter bwvzppTot) throws IOException {
 		// TODO Auto-generated method stub
 
 		int j = 0;
@@ -135,7 +129,7 @@ public class CobolToJavaConverter {
 	 * @param rpvi3053
 	 * @throws IOException
 	 */
-	private static void writeHeader(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
+	private void writeHeader(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
 		StringBuffer header = new StringBuffer();
 
 		// Header Record
@@ -193,7 +187,7 @@ public class CobolToJavaConverter {
 	 * @param rpvi3053
 	 * @throws IOException
 	 */
-	private static void writeDetail(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
+	private void writeDetail(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
 		StringBuffer sb = new StringBuffer();
 		final int i = 0;
 
@@ -257,7 +251,7 @@ public class CobolToJavaConverter {
 	 * @param rpvi3053
 	 * @throws IOException
 	 */
-	private static void writeTrailer(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
+	private void writeTrailer(BufferedWriter bw, RPVI3053 rpvi3053) throws IOException {
 		StringBuffer tailer = new StringBuffer();
 		/*
 		 * WRITE-TRAILER-RECS. INITIALIZE ORB-TRAILER-TRANSACTION OF
@@ -326,7 +320,7 @@ public class CobolToJavaConverter {
 	 * @param sCurrentLine
 	 * @return
 	 */
-	private static RPVI3053 convertRPVI3053(String sCurrentLine) {
+	private RPVI3053 convertRPVI3053(String sCurrentLine) {
 		RPVI3053 cpRPVI3053 = new RPVI3053();
 
 		cpRPVI3053.setORB_HDR_TAPE(sCurrentLine.substring(64, 65).charAt(0));
@@ -361,7 +355,7 @@ public class CobolToJavaConverter {
 	 * @param sCurrentLine
 	 * @return
 	 */
-	private static RPVIPKEY convertRPVI3Key(String sCurrentLine) {
+	private RPVIPKEY convertRPVI3Key(String sCurrentLine) {
 		RPVIPKEY cpRPVIPKEY = new RPVIPKEY();
 		cpRPVIPKEY.setPAY_DB_TEL_LINE(sCurrentLine.substring(0, 4));
 		cpRPVIPKEY.setPAY_DB_TEL_NPA(sCurrentLine.substring(4, 7));
@@ -384,7 +378,7 @@ public class CobolToJavaConverter {
 	 * 
 	 * @param rpvi3053
 	 */
-	private static void accumulateVZPPTotals(RPVI3053 rpvi3053) {
+	private void accumulateVZPPTotals(RPVI3053 rpvi3053) {
 		if (rpvi3053.getORB_NSF_REASON_CODE() == null || rpvi3053.getORB_NSF_REASON_CODE() == "") {
 			WS_VZPP_ORB_PMT_ITEMS++;
 			WS_VZPP_ORB_PMT_AMT = WS_VZPP_ORB_PMT_AMT + rpvi3053.getORB_AMT_PAID();
@@ -405,7 +399,7 @@ public class CobolToJavaConverter {
 	 * @param rpvipkey
 	 * @throws IOException
 	 */
-	private static void writeVZPPTotals(BufferedWriter bwvzppTot, RPVIPKEY rpvipkey) throws IOException {
+	private void writeVZPPTotals(BufferedWriter bwvzppTot, RPVIPKEY rpvipkey) throws IOException {
 		RPVI8001 rpvi8001 = new RPVI8001();
 		StringBuffer vzppTot = new StringBuffer();
 		rpvi8001.setVZPP_DATE_RECEIVED(new Integer(sdf.format(c1.getTime())));
@@ -413,79 +407,20 @@ public class CobolToJavaConverter {
 		rpvi8001.setVZPP_TIME_RECEIVED(new Integer(sdf.format(c1.getTime())));
 		rpvi8001.setVZPP_TIME_SENT(new Integer(format.format(date)));
 		vzppTot.append(sdf.format((date)));
-		rpvi8001.setVZPP_PAYMENT_AMOUNT((short) WS_VZPP_ORB_PMT_AMT);
+		rpvi8001.setVZPP_PAYMENT_AMOUNT(BigDecimal.valueOf(WS_VZPP_ORB_PMT_AMT));
 		vzppTot.append(String.format("%.2f", WS_VZPP_ORB_PMT_AMT).replace(".", ""));
-		rpvi8001.setVZPP_PAYMENT_ITEMS((short)WS_VZPP_ORB_PMT_ITEMS);
+		rpvi8001.setVZPP_PAYMENT_ITEMS((Integer) WS_VZPP_ORB_PMT_ITEMS);
 		vzppTot.append(decimalFormat.format(WS_VZPP_ORB_PMT_ITEMS).replace(".", ""));
-		rpvi8001.setVZPP_RETURN_AMOUNT((short) WS_VZPP_ORB_RTN_AMT);
+		rpvi8001.setVZPP_RETURN_AMOUNT(BigDecimal.valueOf(WS_VZPP_ORB_RTN_AMT));
 
 		vzppTot.append(String.format("%.2f", WS_VZPP_ORB_RTN_AMT).replace(".", ""));
-		rpvi8001.setVZPP_RETURN_ITEMS((short) WS_VZPP_ORB_RTN_ITEMS);
+		rpvi8001.setVZPP_RETURN_ITEMS((Integer) WS_VZPP_ORB_RTN_ITEMS);
 		vzppTot.append(decimalFormat.format(WS_VZPP_ORB_RTN_ITEMS).replace(".", ""));
 		rpvi8001.setVZPP_BILLING_SYSTEM("05");
 		vzppTot.append("05");
 		bwvzppTot.write(vzppTot.toString());
 		bwvzppTot.newLine();
 
-	}
-	private static String unpackData(byte[] packedData, int decimalPointLocation) {
-	    String unpackedData = "";
-
-	    final int negativeSign = 13;
-	    for (int currentCharIndex = 0; currentCharIndex < packedData.length; currentCharIndex++) {
-	        byte firstDigit = (byte) ((packedData[currentCharIndex] >>> 4) & 0x0F);
-	        byte secondDigit = (byte) (packedData[currentCharIndex] & 0x0F);
-	        unpackedData += String.valueOf(firstDigit);
-	        if (currentCharIndex == (packedData.length - 1)) {
-	            if (secondDigit == negativeSign) {
-	                unpackedData = "-" + unpackedData;
-	            }
-	        } else {
-	            unpackedData += String.valueOf(secondDigit);
-	        }
-	    }
-
-	    if (decimalPointLocation > 0) {
-	        int position = unpackedData.length() - decimalPointLocation;
-	        unpackedData = unpackedData.substring(0, position) + "." + unpackedData.substring(position);
-	    }
-	    return unpackedData;
-	}
-	
-	private static byte[] packData(String unpackedData) {
-	    int unpackedDataLength = unpackedData.length();
-	    final int negativeSign = 13;
-	    final int positiveSign = 12;
-	    if (unpackedData.charAt(0)=='-'){
-	        unpackedDataLength--;
-	    }
-
-	    if (unpackedData.contains(".")){
-	        unpackedDataLength--;
-	    }
-	    int packedLength = unpackedDataLength/2+1;
-
-	    byte[] packed = new byte[packedLength];
-	    int countPacked = 0;
-	    boolean firstHex = (packedLength*2-1 == unpackedDataLength);
-	    for (int i=0;i<unpackedData.length();i++){
-	        if (unpackedData.charAt(i)!='-' && unpackedData.charAt(i)!='.'){
-	            byte digit = Byte.valueOf(unpackedData.substring(i,i+1)); 
-	            if (firstHex){
-	                packed[countPacked]=(byte) (digit<<4);
-	            }else{
-	                packed[countPacked]=(byte) (packed[countPacked] | digit );
-	                countPacked++;
-	            }
-	            firstHex=!firstHex;
-	        }
-	    }
-	    if (unpackedData.charAt(0)=='-'){
-	        packed[countPacked]=(byte) (packed[countPacked] | negativeSign );
-	    }else{
-	        packed[countPacked]=(byte) (packed[countPacked] | positiveSign );
-	    }
-	    return packed;
 	}
 
 }

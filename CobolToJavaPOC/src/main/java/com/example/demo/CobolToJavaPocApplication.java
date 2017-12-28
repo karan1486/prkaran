@@ -14,14 +14,10 @@ import com.cobolconverter.demo.CobolToJavaConverter;
 @SpringBootApplication
 @EnableAutoConfiguration
 public class CobolToJavaPocApplication {
-	@Autowired
-	private static Environment env;
 	
-
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(CobolToJavaPocApplication.class, args);
-		CobolToJavaConverter.convertCobolToJava();
-		System.out.println("Inside Main class");
-		
+		CobolToJavaConverter cobolToJavaConv=new CobolToJavaConverter();
+		cobolToJavaConv.convertCobolToJava();
 	}
 }
