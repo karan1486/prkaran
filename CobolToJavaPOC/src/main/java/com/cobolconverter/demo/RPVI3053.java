@@ -5,6 +5,7 @@ package com.cobolconverter.demo;
 
 public class RPVI3053 {
 	
+
 	public char ORB_HDR_TAPE;
 	public String ORB_CREATE_YYMMDD;
 	public String ORB_CREATE_HHMN;
@@ -219,6 +220,7 @@ public class RPVI3053 {
 	public void setORB_TRL_TAPE_FILLER_87(String oRB_TRL_TAPE_FILLER_87) {
 		ORB_TRL_TAPE_FILLER_87 = oRB_TRL_TAPE_FILLER_87;
 	}
+
 	@Override
 	public String toString() {
 		return "RPVI3053 [ORB_HDR_TAPE=" + ORB_HDR_TAPE + ", ORB_CREATE_YYMMDD=" + ORB_CREATE_YYMMDD
@@ -233,8 +235,25 @@ public class RPVI3053 {
 				+ ", ORB_LRECL=" + ORB_LRECL + ", ORB_BLKSIZE=" + ORB_BLKSIZE + ", ORB_HDR_FILLER_96="
 				+ ORB_HDR_FILLER_96 + ", ORB_TRANS_COUNT=" + ORB_TRANS_COUNT + ", ORB_TRANS_AMT=" + ORB_TRANS_AMT
 				+ ", ORB_TRL_TRANS_FILLER_87=" + ORB_TRL_TRANS_FILLER_87 + ", ORB_TAPE_COUNT=" + ORB_TAPE_COUNT
-				+ ", ORB_TAPE_AMT=" + ORB_TAPE_AMT + ", ORB_TRL_TAPE_FILLER_87=" + ORB_TRL_TAPE_FILLER_87 + "]";
+				+ ", ORB_TAPE_AMT=" + ORB_TAPE_AMT + ", ORB_TRL_TAPE_FILLER_87=" + ORB_TRL_TAPE_FILLER_87
+				+ ", getORB_HDR_TAPE()=" + getORB_HDR_TAPE() + ", getORB_CREATE_YYMMDD()=" + getORB_CREATE_YYMMDD()
+				+ ", getORB_CREATE_HHMN()=" + getORB_CREATE_HHMN() + ", getORB_ITEM_NUM()=" + getORB_ITEM_NUM()
+				+ ", getORB_CUST_ACCT_NUM()=" + getORB_CUST_ACCT_NUM() + ", getORB_PMT_DATE_YY()="
+				+ getORB_PMT_DATE_YY() + ", getORB_PMT_DATE_MM()=" + getORB_PMT_DATE_MM() + ", getORB_PMT_DATE_DD()="
+				+ getORB_PMT_DATE_DD() + ", getORB_AMT_PAID()=" + getORB_AMT_PAID() + ", getORB_TRACK_NUM_PRI()="
+				+ getORB_TRACK_NUM_PRI() + ", getORB_TRACK_NUM_SEC()=" + getORB_TRACK_NUM_SEC() + ", getORB_PMT_TYPE()="
+				+ getORB_PMT_TYPE() + ", getORB_NSF_INDR()=" + getORB_NSF_INDR() + ", getORB_NSF_REASON_CODE()="
+				+ getORB_NSF_REASON_CODE() + ", getORB_ProcessType()=" + getORB_ProcessType()
+				+ ", getORB_PMT_CONFIRMATION_NO()=" + getORB_PMT_CONFIRMATION_NO() + ", getORB_PMT_FILLER()="
+				+ getORB_PMT_FILLER() + ", getORB_V5INDR()=" + getORB_V5INDR() + ", getORB_BANK_ID()="
+				+ getORB_BANK_ID() + ", getORB_BANK_ACCT_NUM()=" + getORB_BANK_ACCT_NUM() + ", getORB_HDR_FILLER_81()="
+				+ getORB_HDR_FILLER_81() + ", getORB_LRECL()=" + getORB_LRECL() + ", getORB_BLKSIZE()="
+				+ getORB_BLKSIZE() + ", getORB_HDR_FILLER_96()=" + getORB_HDR_FILLER_96() + ", getORB_TRANS_COUNT()="
+				+ getORB_TRANS_COUNT() + ", getORB_TRANS_AMT()=" + getORB_TRANS_AMT()
+				+ ", getORB_TRL_TRANS_FILLER_87()=" + getORB_TRL_TRANS_FILLER_87() + ", getORB_TAPE_COUNT()="
+				+ getORB_TAPE_COUNT() + ", getORB_TAPE_AMT()=" + getORB_TAPE_AMT() + ", getORB_TRL_TAPE_FILLER_87()="
+				+ getORB_TRL_TAPE_FILLER_87() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
-
 
 }

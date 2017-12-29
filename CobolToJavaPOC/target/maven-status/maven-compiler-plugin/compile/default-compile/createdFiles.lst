@@ -1,4 +1,6 @@
 com\cobolconverter\demo\CobolToJavaConverter.class
+CobolToJavaController.class
+com\cobolconverter\demo\ConfigProperties.class
 com\cobolconverter\demo\RPVI3053.class
 com\cobolconverter\demo\RPVI8001.class
 com\example\demo\CobolToJavaPocApplication.class
